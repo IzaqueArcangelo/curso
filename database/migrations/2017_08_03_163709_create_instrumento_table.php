@@ -14,8 +14,10 @@ class CreateInstrumentoTable extends Migration
     public function up()
     {
         Schema::create('instrumento', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+            $table->increments('id')->unsigned();
+            $table->string('nome');
+            $table->string('imagem');
+            $table->string('descricao');
         });
     }
 

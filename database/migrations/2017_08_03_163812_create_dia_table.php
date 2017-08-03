@@ -14,8 +14,9 @@ class CreateDiaTable extends Migration
     public function up()
     {
         Schema::create('dia', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+            $table->increments('id')->unsigned();
+            $table->string('nome');
+            $table->integer('cod_dia')->unsigned();
         });
     }
 

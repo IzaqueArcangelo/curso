@@ -14,8 +14,8 @@ class CreateAnoTable extends Migration
     public function up()
     {
         Schema::create('ano', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+            $table->increments('id')->unsigned();
+            $table->integer('ano')->unsigned();
         });
     }
 

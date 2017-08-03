@@ -14,8 +14,8 @@ class CreatePerfilTable extends Migration
     public function up()
     {
         Schema::create('perfil', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+            $table->increments('id')->unsigned(); // permite somente a inserção de valores positivos.
+            $table->string('nome');
         });
     }
 

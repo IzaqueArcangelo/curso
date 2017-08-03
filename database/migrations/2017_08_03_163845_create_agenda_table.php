@@ -14,8 +14,11 @@ class CreateAgendaTable extends Migration
     public function up()
     {
         Schema::create('agenda', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+            $table->increments('id')->unsigned();
+            $table->dateTime('dataInicio');
+            $table->dateTime('dataFim');
+            $table->integer('dia_semana')->unsigned();
+            $table->foreign('dia_semana')->references('id')->on('dia');
         });
     }
 

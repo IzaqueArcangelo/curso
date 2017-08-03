@@ -14,8 +14,15 @@ class CreateAlunoTable extends Migration
     public function up()
     {
         Schema::create('aluno', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+            $table->increments('id')->unsigned();
+            $table->string('nome');
+            $table->string('email');
+            $table->string('telefone');
+            $table->string('CPF')->unique();
+            $table->integer('id_endereco')->unsigned();
+            $table->integer('id_mensalidade')->unsigned();
+            $table->foreign('id_endereco')->references('id')->on('endereco');
+            $table->foreign('id_mensalidade')->references('id')->on('mensalidade');
         });
     }
 

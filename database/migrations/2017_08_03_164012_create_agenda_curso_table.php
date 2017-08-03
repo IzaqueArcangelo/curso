@@ -14,8 +14,11 @@ class CreateAgendaCursoTable extends Migration
     public function up()
     {
         Schema::create('agenda_curso', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+            $table->increments('id')->unsigned();
+            $table->integer('id_agenda')->unsigned();
+            $table->integer('id_curso')->unsigned();
+            $table->foreign('id_agenda')->references('id')->on('agenda');
+            $table->foreign('id_curso')->references('id')->on('curso');
         });
     }
 

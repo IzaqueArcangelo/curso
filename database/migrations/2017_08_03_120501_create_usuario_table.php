@@ -14,8 +14,12 @@ class CreateUsuarioTable extends Migration
     public function up()
     {
         Schema::create('usuario', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+            $table->increments('id')->unsigned();
+            $table->string('nome');
+            $table->string('email');
+            $table->string('senha');
+            $table->integer('id_perfil')->unsigned();
+            $table->foreign('id_perfil')->references('id')->on('perfil');
         });
     }
 

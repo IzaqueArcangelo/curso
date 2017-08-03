@@ -14,8 +14,15 @@ class CreateInscricaoTable extends Migration
     public function up()
     {
         Schema::create('inscricao', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+            $table->increments('id')->unsigned();
+            $table->dateTime('dataInscricao');
+            $table->dateTime('dataCancelamento');
+            $table->integer('id_mensalidade')->unsigned();
+            $table->integer('id_aluno')->unsigned();
+            $table->integer('id_curso')->unsigned();
+            $table->foreign('id_mensalidade')->references('id')->on('mensalidade');
+            $table->foreign('id_aluno')->references('id')->on('aluno');
+            $table->foreign('id_curso')->references('id')->on('curso');
         });
     }
 

@@ -14,8 +14,9 @@ class CreateMesTable extends Migration
     public function up()
     {
         Schema::create('mes', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+            $table->increments('id')->unsigned();
+            $table->string('nome');
+            $table->integer('cod_mes')->unsigned();
         });
     }
 
