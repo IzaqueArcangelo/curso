@@ -1,8 +1,9 @@
-body {
+
+html, body {
     font-family: 'Open Sans', sans-serif;
-    background-color: #f7f7f7;
+    /*background-color: #f7f7f7;*/
+    background-color: #eff0f3;
     position: relative;
-    margin: 0px;
     /*font-size: 12px;*/
     padding: 0px;
 }
@@ -14,15 +15,13 @@ body {
 }
 
 /* Footer */
-
 footer {
     background-color: #000000;
     box-shadow: inset 0px 0px 3px #111;
     color: #fff;
-   /* font-size: 14px;*/
+    /* font-size: 14px;*/
     line-height: 25px;
     padding: 10px 0px 10px 0px;
-    bottom: 0px;
     height: 200px;
 }
 
@@ -37,6 +36,7 @@ footer a:hover {
     text-decoration: none;
     border: 0px;
 }
+
 .social-links{
     font-size: 2.5em;
     margin-top: 5%;
@@ -47,17 +47,6 @@ footer a:hover {
     border-style: none;
 }
 
-footer hr {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border-top: #000 1px solid;
-    border-bottom: #212121 1px solid;
-}
-
-footer .copy {
-    font-size: 13px;
-    margin: 15px 0px;
-}
 
 /* Logo & Navigation */
 
@@ -390,10 +379,6 @@ footer .copy {
     background-color: #eff0f3;
     background-repeat: no-repeat;
     height: 100%;
-}
-
-body {
-    background-color: #eff0f3;
 }
 
 /** Login & Signup **/
