@@ -18,6 +18,7 @@ class CreateAlunoTable extends Migration
             $table->string('nome');
             $table->string('email');
             $table->string('telefone');
+            $table->date('dataNascimento');
             $table->string('CPF')->unique();
             $table->integer('id_endereco')->unsigned();
             $table->integer('id_mensalidade')->unsigned();
