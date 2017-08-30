@@ -2,20 +2,70 @@
     <div class="sidebar content-box" style="display: block;">
         <ul class="nav">
             <!-- Main menu -->
-            <li class="current"><a href="index.html"><i class="glyphicon glyphicon-home"></i> Inicio</a></li>
-            <li><a href="agenda.html"><i class="glyphicon glyphicon-calendar"></i> Agenda </a></li>
+            <li class="current"><a href="{{route('/')}}"><i class="glyphicon glyphicon-home"></i> Inicio</a></li>
+            <li><a href="{{route('/agenda')}}"><i class="glyphicon glyphicon-calendar"></i> Agenda </a></li>
             <li class="submenu">
-                <a href="forms.html"><i class="glyphicon glyphicon-tasks"></i> Alunos <span
+                <a href="#"><i class="fa fa-users" aria-hidden="true"></i> Alunos <span
                             class="caret pull-right"></span> </a>
                 <!-- Sub menu de alunos -->
                 <ul>
-                    <li><a href="login.html"> <i class="fa fa-plus-circle" aria-hidden="true"></i> Cadastrar</a>
+                    <li><a href="{{route('/cadastrar/aluno')}}"><i class="fa fa-user-plus" aria-hidden="true"></i>
+                            Cadastrar</a>
                     </li>
-                    <li><a href="signup.html"> <i class="fa fa-table" aria-hidden="true"></i> Manter
+                    <li><a href="{{route('/manter/cadastros/aluno')}}"> <i class="fa fa-table" aria-hidden="true"></i> Manter
+                    Cadastro</a></li>
+
+                    <li><a href="{{route('/registrar/pagamento')}}"> <i class="fa fa-money" aria-hidden="true"></i> Pagamento </a></li>
+        </ul>
+            </li>
+            <li class="submenu">
+                <a href="#"><i class="glyphicon glyphicon-tasks"></i> Professores <span
+                            class="caret pull-right"></span>  </a>
+                <!-- Sub menu de alunos -->
+                <ul>
+                    <li><a href="{{route('/cadastrar/professor')}}"> <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                            Cadastrar</a>
+                    </li>
+                    <li><a href="{{route('/manter/cadastros/professor')}}"> <i class="fa fa-table" aria-hidden="true"></i> Manter
                             Cadastro</a></li>
                 </ul>
             </li>
-            <li><a href="forms.html"><i class="glyphicon glyphicon-tasks"></i> Professores </a></li>
+            <li class="submenu">
+                <a href="#"><i class="glyphicon glyphicon-tasks"></i> Usuários <span
+                            class="caret pull-right"></span>  </a>
+                <!-- Sub menu de alunos -->
+                <ul>
+                    <li><a href="{{route('/cadastrar/usuario')}}"> <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                            Cadastrar</a>
+                    </li>
+                    <li><a href="{{route('/manter/cadastros/usuario')}}"> <i class="fa fa-table" aria-hidden="true"></i> Manter
+                            Cadastro</a></li>
+                </ul>
+            </li>
+            <li class="submenu">
+                <a href="#"><i class="glyphicon glyphicon-tasks"></i> Cursos <span
+                            class="caret pull-right"></span>  </a>
+                <!-- Sub menu de alunos -->
+                <ul>
+                    <li><a href="{{route('/cadastrar/curso')}}"> <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                            Cadastrar</a>
+                    </li>
+                    <li><a href="{{route('/manter/cadastros/curso')}}"> <i class="fa fa-table" aria-hidden="true"></i> Manter
+                            Cadastro</a></li>
+                </ul>
+            </li>
+            <li class="submenu">
+                <a href="#"><i class="glyphicon glyphicon-tasks"></i> Instrumentos <span
+                            class="caret pull-right"></span>  </a>
+                <!-- Sub menu de alunos -->
+                <ul>
+                    <li><a href="{{route('/cadastrar/instrumento')}}"> <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                            Cadastrar</a>
+                    </li>
+                    <li><a href="{{route('/manter/cadastros/instrumento')}}"> <i class="fa fa-table" aria-hidden="true"></i> Manter
+                            Cadastro</a></li>
+                </ul>
+            </li>
             <li><a href="stats.html"><i class="glyphicon glyphicon-stats"></i> Relatórios </a></li>
             <!-- <li><a href="tables.html"><i class="glyphicon glyphicon-list"></i> Tables</a></li>
              <li><a href="buttons.html"><i class="glyphicon glyphicon-record"></i> Buttons</a></li>

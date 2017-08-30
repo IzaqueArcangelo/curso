@@ -1,32 +1,27 @@
 $(document).ready(function(){
 	// Select
 	$('.selectpicker').selectpicker();
-	
-	// Tags
-	$("#tags").tags({
-      suggestions: ["alpha", "bravo", "charlie", "delta", "echo", "foxtrot", "golf", "hotel", "india"],
-      tagData: ["juliett", "kilo"]
+
+	//Date picker
+    $('#dataNascimento input').datepicker({
+        format: 'dd/mm/yyyy',
+        language: 'pt-BR',
+    });
+    //Date picker
+    $('#dataPagamento input').datepicker({
+        format: 'dd/mm/yyyy',
+        language: 'pt-BR',
     });
 
-	// Editable
-	$('.editable').editable();
+    // Desabilitando o envio do formulário com o ENTER
+    $('#formAgendamento').bind("keypress", function(e) {
+        if (e.keyCode == 13) {
+            return false;
+        }
+    });
 
-	// Wizard
-	$('#rootwizard').bootstrapWizard();
+    // Plugin de máscara
+    $('.cpf').mask('000.000.000-00', {reverse: true});
+    $('.cep').mask('00000-000');
 
-    // Mask
-    if ($('[data-mask]')
-        .length) {
-        $('[data-mask]')
-            .each(function () {
-
-                $this = $(this);
-                var mask = $this.attr('data-mask') || 'error...',
-                    mask_placeholder = $this.attr('data-mask-placeholder') || 'X';
-
-                $this.mask(mask, {
-                    placeholder: mask_placeholder
-                });
-            })
-    }
 });

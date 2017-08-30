@@ -10,15 +10,15 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand meu-logo" href="#">Template</a>
+            <a class="navbar-brand meu-logo" href="#"> <i class="glyphicon glyphicon-calendar" style="font-size: 1em;" aria-hidden="true"></i> Template</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right link-nav">
-                <li><a href="#">Home Page</a></li>
+                <li><a href="{{route('/')}}">Home Page</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false">Minha conta <span class="caret"></span></a>
+                       aria-expanded="false"> <i class="fa fa-user-circle-o" aria-hidden="true"></i> Minha conta <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">Action</a></li>
                         <li><a href="#">Another action</a></li>
