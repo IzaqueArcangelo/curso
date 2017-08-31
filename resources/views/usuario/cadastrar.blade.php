@@ -24,14 +24,16 @@
                                 <div class="form-group">
                                     <label for="nome">Nome</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome completo">
+                                        <input type="text" class="form-control" id="nome" name="nome"
+                                               placeholder="Nome completo">
                                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email</label>
                                     <div class="input-group">
-                                        <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                                        <input type="email" class="form-control" id="email" name="email"
+                                               placeholder="Email">
                                         <span class="input-group-addon"><i class="fa fa-at"></i></span>
                                     </div>
                                 </div>
@@ -42,7 +44,8 @@
                                         <input type="password" id="cpf" name="senha" class="form-control"
                                                placeholder="Senha do usuário">
                                         <span
-                                                class="input-group-addon"><i class="fa fa-id-card-o" aria-hidden="true"></i></span>
+                                                class="input-group-addon"><i class="fa fa-id-card-o"
+                                                                             aria-hidden="true"></i></span>
                                     </div>
                                 </div>
                             </fieldset>
@@ -52,13 +55,12 @@
                                 <div class="form-group">
                                     <label for="nome">Perfil de acesso</label>
                                     <div class="input-group">
-                                    <select class="selectpicker" name="diaVencimento">
-                                        <option disabled selected>Selecione</option>
-                                        <option>1</option>
-                                        <option>5</option>
-                                        <option>10</option>
-                                        <option>20</option>
-                                    </select>
+                                        <select class="selectpicker" name="diaVencimento">
+                                            <option disabled selected>Selecione</option>
+                                            @foreach($perfils as $perfil)
+                                                <option value="{{$perfil->id}}">{{$perfil->nome}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                             </fieldset>

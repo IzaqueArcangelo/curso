@@ -24,14 +24,16 @@
                                 <div class="form-group">
                                     <label for="nome">Nome</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome completo" value="Fulano de Tal Gonçalves" readonly>
+                                        <input type="text" class="form-control" id="nome" name="nome"
+                                               placeholder="Nome completo" value="Fulano de Tal Gonçalves" readonly>
                                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email</label>
                                     <div class="input-group">
-                                        <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="fulano_detal@gmail.com" readonly>
+                                        <input type="email" class="form-control" id="email" name="email"
+                                               placeholder="Email" value="fulano_detal@gmail.com" readonly>
                                         <span class="input-group-addon"><i class="fa fa-at"></i></span>
                                     </div>
                                 </div>
@@ -39,9 +41,11 @@
                                 <div class="form-group">
                                     <label for="cpf">CPF</label>
                                     <div class="input-group">
-                                        <input type="text" id="cpf" name="cpf" class="form-control cpf" placeholder="CPF" value="131.131.234-45" readonly>
+                                        <input type="text" id="cpf" name="cpf" class="form-control cpf"
+                                               placeholder="CPF" value="131.131.234-45" readonly>
                                         <span
-                                                class="input-group-addon"><i class="fa fa-id-card-o" aria-hidden="true"></i></span>
+                                                class="input-group-addon"><i class="fa fa-id-card-o"
+                                                                             aria-hidden="true"></i></span>
                                     </div>
                                 </div>
                             </fieldset>
@@ -83,12 +87,14 @@
                                 <legend>Dados da Mensalidade</legend>
                                 <div class="form-group">
                                     <label for="nome">Valor</label>
-                                    <input type="text" class="form-control" id="valor" name="valor" value="200,00" readonly>
+                                    <input type="text" class="form-control" id="valor" name="valor" value="200,00"
+                                           readonly>
                                 </div>
                                 <div class="form-group">
                                     <label for="dtNascimento">Vencimento</label>
                                     <div class="input-group">
-                                        <input id="vencimento" name="vencimento" class="form-control" data-date-end-date="0d"
+                                        <input id="vencimento" name="vencimento" class="form-control"
+                                               data-date-end-date="0d"
                                                data-mask="99/99/9999" data-mask-placeholder="-"
                                                placeholder="Data Pagamento" value="20/10/1992" readonly>
                                         <span
@@ -102,7 +108,8 @@
                                 <div class="form-group">
                                     <label for="dtNascimento">Data Pagamento</label>
                                     <div class="input-group" id="dataPagamento">
-                                        <input id="dtPagamento" name="dtPagamento" class="form-control" data-date-end-date="0d"
+                                        <input id="dtPagamento" name="dtPagamento" class="form-control"
+                                               data-date-end-date="0d"
                                                data-mask="99/99/9999" data-mask-placeholder="-"
                                                placeholder="Data Pagamento">
                                         <span
@@ -113,9 +120,11 @@
                                 <div class="form-group">
                                     <label for="dtNascimento">Valor</label>
                                     <div class="input-group">
-                                        <input type="text" id="valorPg" name="valorPg" class="form-control" placeholder="Valor Pago" value="189,99">
+                                        <input type="text" id="valorPg" name="valorPg" class="form-control"
+                                               placeholder="Valor Pago" value="189,99">
                                         <span
-                                                class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i></span>
+                                                class="input-group-addon"><i class="fa fa-usd"
+                                                                             aria-hidden="true"></i></span>
                                     </div>
                                 </div>
 
@@ -124,11 +133,9 @@
                                     <div class="input-group">
                                         <select class="selectpicker" name="diaVencimento">
                                             <option disabled selected>Selecione</option>
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
+                                            @foreach($mesReferencia as $mes)
+                                                <option value="{{$mes->cod_mes}}">{{$mes->nome}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -136,12 +143,11 @@
                                 <div class="form-group">
                                     <label for="nome">Ano Referência</label>
                                     <div class="input-group">
-                                        <select class="selectpicker" name="diaVencimento">
+                                        <select class="selectpicker">
                                             <option disabled selected>Selecione</option>
-                                            <option>2017</option>
-                                            <option>2018</option>
-                                            <option>2019</option>
-                                            <option>2020</option>
+                                            @foreach($anoReferencia as $ano)
+                                                <option value="{{$ano->id}}">{{$ano->ano}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>

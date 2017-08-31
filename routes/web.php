@@ -75,7 +75,6 @@ Route::get('/manter/cadastros/instrumento', 'InstrumentoController@manterCadastr
 |
 */
 
-Route::get('/registrar/pagamento', 'PagamentoController@index')->name('/registrar/pagamento');
 Route::get('/registrar/pagamento/aluno', 'PagamentoController@informacao')->name('/registrar/pagamento/aluno');
 
 /*

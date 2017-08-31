@@ -51,7 +51,7 @@
                                 <td>
                                     <i class="fa fa-info-circle" aria-hidden="true"></i>
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                    <i class="fa fa-money" aria-hidden="true"></i>
+                                    <a href="{{route('/registrar/pagamento/aluno')}}"><i class="fa fa-money" aria-hidden="true"></i></a>
                                 </td>
                             </tr>
                             <tr>
@@ -62,7 +62,7 @@
                                 <td>
                                     <i class="fa fa-info-circle" aria-hidden="true"></i>
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                    <i class="fa fa-money" aria-hidden="true"></i>
+                                    <a href="{{route('/registrar/pagamento/aluno')}}"><i class="fa fa-money" aria-hidden="true"></i></a>
                                 </td>
                             </tr>
                             <tr>
@@ -73,7 +73,7 @@
                                 <td>
                                     <i class="fa fa-info-circle" aria-hidden="true"></i>
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                    <i class="fa fa-money" aria-hidden="true"></i>
+                                    <a href="{{route('/registrar/pagamento/aluno')}}"><i class="fa fa-money" aria-hidden="true"></i></a>
                                 </td>
                             </tr>
                             </tbody>

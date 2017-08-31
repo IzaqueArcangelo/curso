@@ -34,9 +34,10 @@
                                 <div class="form-group">
                                     <label for="nome" class="control-label">Curso</label>
                                     <select class="selectpicker form-control" data-live-search="true">
-                                        <option>Mustard</option>
-                                        <option>Ketchup</option>
-                                        <option>Relish</option>
+                                        <option selected disabled>Selecione um Curso</option>
+                                        @foreach($cursos as $curso)
+                                            <option value="{{$curso->id}}">{{$curso->instrumento->nome}}</option>
+                                         @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -46,9 +47,10 @@
                                 <div class="form-group">
                                     <label for="nome" class="control-label">Aluno</label>
                                     <select class="selectpicker form-control" data-live-search="true">
-                                        <option>Mustard</option>
-                                        <option>Ketchup</option>
-                                        <option>Relish</option>
+                                        <option selected disabled>Selecione um Aluno</option>
+                                        @foreach($alunos as $aluno)
+                                        <option value="{{$aluno->id}}">{{$aluno->nome}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>

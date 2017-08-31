@@ -22,16 +22,16 @@
                             <fieldset>
                                 <legend>Dados do Curso</legend>
                                 <div class="form-group">
-                                    <label for="nome">Valor</label>
+                                    <label for="nome">Nome Curso</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="valor" name="valor" placeholder="Valor do Curso">
+                                        <input type="text" class="form-control" id="nomeCurso" name="nomeCurso" placeholder="Nome do Curso">
                                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="nome">Carga Horária</label>
+                                    <label for="nome">Valor</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="cagaHoraria" name="cargaHoraria" placeholder="Carga horária em horas">
+                                        <input type="text" class="form-control" id="valor" name="valor" placeholder="Valor do Curso">
                                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                     </div>
                                 </div>
@@ -40,10 +40,9 @@
                                     <div class="input-group">
                                     <select class="selectpicker" name="diaVencimento">
                                         <option disabled selected>Selecione</option>
-                                        <option>1</option>
-                                        <option>5</option>
-                                        <option>10</option>
-                                        <option>20</option>
+                                        @foreach($instrumentos as $instrumento)
+                                            <option value="{{$instrumento->id}}">{{$instrumento->nome}}</option>
+                                       @endforeach
                                     </select>
                                     </div>
                                 </div>

@@ -24,14 +24,16 @@
                                 <div class="form-group">
                                     <label for="nome">Nome</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome completo">
+                                        <input type="text" class="form-control" id="nome" name="nome"
+                                               placeholder="Nome completo">
                                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email</label>
                                     <div class="input-group">
-                                        <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                                        <input type="email" class="form-control" id="email" name="email"
+                                               placeholder="Email">
                                         <span class="input-group-addon"><i class="fa fa-at"></i></span>
                                     </div>
                                 </div>
@@ -61,10 +63,9 @@
                                     <div class="input-group">
                                         <select class="selectpicker" title="Selecione" name="cursos" multiple>
                                             <option disabled>Selecione os cursos</option>
-                                            <option>1</option>
-                                            <option>5</option>
-                                            <option>10</option>
-                                            <option>20</option>
+                                            @foreach($cursos as $curso)
+                                                <option value="{{$curso->instrumento->id}}">{{$curso->instrumento->nome}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>

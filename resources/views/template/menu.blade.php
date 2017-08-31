@@ -15,7 +15,6 @@
                     <li><a href="{{route('/manter/cadastros/aluno')}}"> <i class="fa fa-table" aria-hidden="true"></i> Manter
                     Cadastro</a></li>
 
-                    <li><a href="{{route('/registrar/pagamento')}}"> <i class="fa fa-money" aria-hidden="true"></i> Pagamento </a></li>
         </ul>
             </li>
             <li class="submenu">
