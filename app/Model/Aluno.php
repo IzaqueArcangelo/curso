@@ -10,15 +10,15 @@ class Aluno extends Model
     public $timestamps = false; //TODO remove o gerenciamento automático do láravel created_at e updated_at.
 
     public function endereco(){
-        return $this->belongsTo('App\Endereco', 'id_endereco', 'id');
+        return $this->belongsTo('App\Model\Endereco', 'id_endereco', 'id');
     }
 
     public function cursos(){
-        return $this->belongsToMany('App\Curso', 'inscricao', 'id_aluno', 'id_curso')
+        return $this->belongsToMany('App\Model\Curso', 'inscricao', 'id_aluno', 'id_curso')
         ->withPivot('dataInscricao', 'dataCancelamento', 'id_mensalidade');
     }
 
     public function mensalidade(){
-        return $this->belongsTo('App\Mensalidade', 'id_mensalidade', 'id');
+        return $this->belongsTo('App\Model\Mensalidade', 'id_mensalidade', 'id');
     }
 }

@@ -10,6 +10,6 @@ class Dia extends Model
     public $timestamps = false; //TODO remove o gerenciamento automático do láravel created_at e updated_at.
 
     public function agenda(){
-        return $this->hasMany('App\Agenda', 'dia_semana', 'id');
+        return $this->hasMany('App\Model\Agenda', 'dia_semana', 'id');
     }
 }

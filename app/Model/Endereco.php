@@ -10,6 +10,6 @@ class Endereco extends Model
     public $timestamps = false; //TODO remove o gerenciamento automático do láravel created_at e updated_at.
 
     public function alunos(){
-        return $this->hasMany('App\Aluno', 'id_endereco', 'id');
+        return $this->hasMany('App\Model\Aluno', 'id_endereco', 'id');
     }
 }

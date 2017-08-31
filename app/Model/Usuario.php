@@ -10,6 +10,6 @@ class Usuario extends Model
     public $timestamps = false; //TODO remove o gerenciamento automático do láravel created_at e updated_at.
 
     public function perfil(){
-        return $this->belongsTo('App\Perfil', 'id_perfil', 'id');
+        return $this->belongsTo('App\Model\Perfil', 'id_perfil', 'id');
     }
 }

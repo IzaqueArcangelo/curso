@@ -10,20 +10,20 @@ class Curso extends Model
     public $timestamps = false; //TODO remove o gerenciamento automático do láravel created_at e updated_at.
 
     public function instrumento(){
-        $this->belongsTo('App\Instrumento', 'id_instrumento','id');
+        return $this->belongsTo('App\Model\Instrumento', 'id_instrumento', 'id');
     }
 
     public function agendas(){
-        return $this->belongsToMany('App\Agenda', 'agenda_curso', 'id_curso', 'id_agenda');
+        return $this->belongsToMany('App\Model\Agenda', 'agenda_curso', 'id_curso', 'id_agenda');
     }
 
     public function professores(){
-        return $this->belongsToMany('App\Professor', 'professor_curso', 'id_curso', 'id_professor');
+        return $this->belongsToMany('App\Model\Professor', 'professor_curso', 'id_curso', 'id_professor');
     }
 
     public function alunos(){
         return $this
-            ->belongsToMany('App\Aluno', 'inscricao', 'id_curso', 'id_aluno')
+            ->belongsToMany('App\Model\Aluno', 'inscricao', 'id_curso', 'id_aluno')
             ->withPivot('dataInscricao', 'dataCancelamento', 'id_mensalidade');
     }
 }

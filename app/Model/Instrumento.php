@@ -10,6 +10,6 @@ class Instrumento extends Model
     public $timestamps = false; //TODO remove o gerenciamento automático do láravel created_at e updated_at.
 
     public function cursos(){
-       return $this->hasMany('App\Curso', 'id_instrumento', 'id');
+       return $this->hasMany('App\Model\Curso', 'id_instrumento', 'id');
     }
 }

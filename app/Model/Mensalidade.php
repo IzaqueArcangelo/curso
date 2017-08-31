@@ -10,14 +10,14 @@ class Mensalidade extends Model
     public $timestamps = false; //TODO remove o gerenciamento automático do láravel created_at e updated_at.
 
     public function aluno(){
-        return $this->hasOne('App\Aluno', 'id_mensalidade','id');
+        return $this->hasOne('App\Model\Aluno', 'id_mensalidade','id');
     }
 
     public function inscricoes(){
-        return $this->hasMany('App\Inscricao', 'id_mensalidade', 'id');
+        return $this->hasMany('App\Model\Inscricao', 'id_mensalidade', 'id');
     }
 
     public function pagamentos(){
-        return $this->hasMany('App\Pagamento', 'id_mensalidade', 'id');
+        return $this->hasMany('App\Model\Pagamento', 'id_mensalidade', 'id');
     }
 }

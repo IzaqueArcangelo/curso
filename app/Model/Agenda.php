@@ -10,10 +10,10 @@ class Agenda extends Model
     public $timestamps = false; //TODO remove o gerenciamento automático do láravel created_at e updated_at.
 
     public function dia(){
-        return $this->belongsTo('App\Dia', 'dia_semana', 'id');
+        return $this->belongsTo('App\Model\Dia', 'dia_semana', 'id');
     }
 
     public function cursos(){
-        return $this->belongsToMany('App\Curso', 'agenda_curso', 'id_agenda', 'id_curso');
+        return $this->belongsToMany('App\Model\Curso', 'agenda_curso', 'id_agenda', 'id_curso');
     }
 }

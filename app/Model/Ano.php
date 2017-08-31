@@ -10,6 +10,6 @@ class Ano extends Model
     public $timestamps = false; //TODO remove o gerenciamento automático do láravel created_at e updated_at.
 
     public function pagamentos(){
-        return $this->hasMany('App\Pagamento', 'ano_referencia', 'id');
+        return $this->hasMany('App\Model\Pagamento', 'ano_referencia', 'id');
     }
 }

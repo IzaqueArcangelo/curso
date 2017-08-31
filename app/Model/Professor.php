@@ -10,6 +10,6 @@ class Professor extends Model
     public $timestamps = false; //TODO remove o gerenciamento automático do láravel created_at e updated_at.
 
     public function cursos(){
-        return $this->belongsToMany('App\Curso', 'professor_curso', 'id_professor', 'id_curso');
+        return $this->belongsToMany('App\Model\Curso', 'professor_curso', 'id_professor', 'id_curso');
     }
 }
