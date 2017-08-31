@@ -16,7 +16,7 @@ class CreateCursoTable extends Migration
         Schema::create('curso', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->double('valor');
-            $table->integer('cargaHoraria')->unsigned();
+            $table->String('nome');
             $table->integer('id_instrumento')->unsigned();
             $table->foreign('id_instrumento')->references('id')->on('instrumento');
         });
