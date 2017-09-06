@@ -18,12 +18,20 @@ class CreateAlunoTable extends Migration
             $table->string('nome');
             $table->string('email');
             $table->string('telefone');
-            $table->date('dataNascimento');
+            $table->date('dataNascimento')->format('d.M.Y');
             $table->string('CPF')->unique();
             $table->integer('id_endereco')->unsigned();
             $table->integer('id_mensalidade')->unsigned();
-            $table->foreign('id_endereco')->references('id')->on('endereco');
-            $table->foreign('id_mensalidade')->references('id')->on('mensalidade');
+            $table->foreign('id_endereco')
+                ->references('id')
+                ->on('endereco')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table->foreign('id_mensalidade')
+                ->references('id')
+                ->on('mensalidade')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         });
     }
 

@@ -15,8 +15,8 @@ class CreateMensalidadeTable extends Migration
     {
         Schema::create('mensalidade', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->date('diaVencimento');
-            $table->float('valor');
+            $table->integer('diaVencimento')->unsigned();
+            $table->float('valor')->nullable();
         });
     }
 
