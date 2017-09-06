@@ -764,3 +764,12 @@ footer a:hover {
     margin-bottom: 20px;
 }
 
+.btn-nude {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: none;
+    border: 0;
+    outline: 0;
+}
+

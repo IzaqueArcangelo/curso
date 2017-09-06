@@ -5,7 +5,8 @@
             <div class="col-md-offset-7 col-md-5 mg-bottom-20">
                 <form name="form-consulta" method="get" action="/">
                     <div class="input-group">
-                        <input type="text" name="nomeProduto" class="form-control input-lg" placeholder="Pesquisar aluno">
+                        <input type="text" name="nomeProduto" class="form-control input-lg"
+                               placeholder="Pesquisar aluno">
                         <span class="input-group-addon">
                                     <button type="submit" class="btn-search">
                                         <span class="glyphicon glyphicon-search"></span>
@@ -32,50 +33,56 @@
                 <div class="content-box-large box-with-header">
                     <div class="panel-body">
                         <!-- Tabela -->
-                        <table class="table">
+                        <table class="table table-striped">
                             <thead>
                             <tr>
-                                <th>#</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Username</th>
-                                <th><i class="glyphicon glyphicon-cog"></i></th>
+                                <th style="text-align: center;">#</th>
+                                <th style="text-align: center;">Nome</th>
+                                <th style="text-align: center;">CPF</th>
+                                <th style="text-align: center;">E-mail</th>
+                                <th style="text-align: center;"><i class="glyphicon glyphicon-cog"></i></th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>
-                                    <i class="fa fa-info-circle" aria-hidden="true"></i>
-                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                    <a href="{{route('/registrar/pagamento/aluno')}}"><i class="fa fa-money" aria-hidden="true"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                                <td>
-                                    <i class="fa fa-info-circle" aria-hidden="true"></i>
-                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                    <a href="{{route('/registrar/pagamento/aluno')}}"><i class="fa fa-money" aria-hidden="true"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                                <td>
-                                    <i class="fa fa-info-circle" aria-hidden="true"></i>
-                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                    <a href="{{route('/registrar/pagamento/aluno')}}"><i class="fa fa-money" aria-hidden="true"></i></a>
-                                </td>
-                            </tr>
+                            @foreach($alunos as $aluno)
+                                <tr>
+                                    <th style="text-align: center;" scope="row">{{$aluno->id}}</th>
+                                    <td style="text-align: center;">{{$aluno->nome}}</td>
+                                    <td style="text-align: center;">{{$aluno->CPF}}</td>
+                                    <td style="text-align: center;">{{$aluno->email}}</td>
+                                    <td style="text-align: center;">
+                                        <button class="btn-nude" onclick="document.getElementById('info-form-{{$aluno->id}}').submit();"><i class="fa fa-info-circle" title="Informações" aria-hidden="true"></i></button>
+                                        <button class="btn-nude" onclick="document.getElementById('editar-form-{{$aluno->id}}').submit();"><i class="fa fa-pencil-square-o" title="Editar" aria-hidden="true"></i></button>
+                                        <button class="btn-nude" onclick="document.getElementById('deletar-form-{{$aluno->id}}').submit();"><i class="fa fa-trash-o" title="Apagar" aria-hidden="true"></i></button>
+                                        <button class="btn-nude" onclick="document.getElementById('pagamento-form-{{$aluno->id}}').submit();"><i class="fa fa-money" title="Registrar pagamento" aria-hidden="true"></i></button>
+                                    </td>
+                                    <form id="info-form-{{$aluno->id}}"
+                                          method="GET"
+                                          action="{{route('/informacoes/aluno',$aluno->id)}}">
+                                        {{--{{csrf_field()}}--}}
+                                    </form>
+                                    <form id="editar-form-{{$aluno->id}}"
+                                          method="GET"
+                                          action="{{route('/editar/aluno',$aluno->id)}}">
+                                        {{--{{csrf_field()}}--}}
+                                    </form>
+                                    <form id="deletar-form-{{$aluno->id}}"
+                                          method="GET"
+                                          action="{{route('/deletar/aluno',$aluno->id)}}">
+                                        {{--{{csrf_field()}}--}}
+                                    </form>
+                                    <form id="pagamento-form-{{$aluno->id}}"
+                                          method="GET"
+                                          action="{{route('/registrar/pagamento/aluno',$aluno->id)}}">
+                                        {{--{{csrf_field()}}--}}
+                                    </form>
+                                </tr>
+                            @endforeach
+                            @if($alunos->isEmpty())
+                                <tr class="no-records-found" style="text-align: center;">
+                                    <td colspan="7">Não há alunos cadastrados</td>
+                                </tr>
+                            @endif
                             </tbody>
                         </table>
                     </div>

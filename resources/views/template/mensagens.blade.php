@@ -1,20 +1,20 @@
 @if(Session::has('alerta-sucesso'))
 <div class="alert alert-success" role="alert">
-    <strong>Well done!</strong> You successfully read this important alert message.
+    <strong>Sucesso!</strong>  {{ Session::get('alerta-sucesso') }}
 </div>
 @endif
 @if(Session::has('alerta-informacao'))
 <div class="alert alert-info" role="alert">
-    <strong>Heads up!</strong> This alert needs your attention, but it's not super important.
+    <strong>Informação!</strong> {{ Session::get('alerta-informacao') }}
 </div>
 @endif
 @if(Session::has('alerta-atencao'))
 <div class="alert alert-warning" role="alert">
-    <strong>Warning!</strong> Better check yourself, you're not looking too good.
+    <strong>Perigo!</strong> {{ Session::get('alerta-atencao') }}
 </div>
 @endif
 @if(Session::has('alerta-perigo'))
 <div class="alert alert-danger" role="alert">
-    <strong>Oh snap!</strong> Change a few things up and try submitting again.
+    <strong>Erro!</strong> {{ Session::get('alerta-perigo') }}
 </div>
 @endif

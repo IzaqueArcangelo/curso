@@ -32,6 +32,11 @@ Route::get('/agendar/aula', 'AgendaController@agendar')->name('/agendar/aula');
 */
 
 Route::get('/cadastrar/aluno', 'AlunoController@cadastrar')->name('/cadastrar/aluno');
+Route::post('/salvar/aluno', 'AlunoController@salvarAluno')->name('/salvar/aluno');
+Route::get('/editar/aluno/{id}', 'AlunoController@editarAluno')->name('/editar/aluno');
+Route::get('/excluir/aluno/{id}', 'AlunoController@deletar')->name('/deletar/aluno');
+Route::put('/atualizar/aluno/{id}', 'AlunoController@atualizar')->name('/atualizar/aluno');
+Route::get('/informacoes/aluno/{id}', 'AlunoController@info')->name('/informacoes/aluno');
 Route::get('/manter/cadastros/aluno', 'AlunoController@manterCadastros')->name('/manter/cadastros/aluno');
 
 /*
@@ -75,7 +80,7 @@ Route::get('/manter/cadastros/instrumento', 'InstrumentoController@manterCadastr
 |
 */
 
-Route::get('/registrar/pagamento/aluno', 'PagamentoController@informacao')->name('/registrar/pagamento/aluno');
+Route::get('/registrar/pagamento/aluno/{id}', 'PagamentoController@informacao')->name('/registrar/pagamento/aluno');
 
 /*
 |--------------------------------------------------------------------------

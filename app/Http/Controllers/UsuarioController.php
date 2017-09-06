@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Perfil;
 use Illuminate\Http\Request;
 
 class UsuarioController extends Controller
 {
     public function cadastrar(){
-        return view('usuario.cadastrar');
+        $perfils = Perfil::all();
+        return view('usuario.cadastrar', compact('perfils'));
     }
 
     public function manterCadastros(){

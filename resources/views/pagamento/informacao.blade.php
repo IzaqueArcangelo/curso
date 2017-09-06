@@ -25,7 +25,7 @@
                                     <label for="nome">Nome</label>
                                     <div class="input-group">
                                         <input type="text" class="form-control" id="nome" name="nome"
-                                               placeholder="Nome completo" value="Fulano de Tal Gonçalves" readonly>
+                                               placeholder="Nome completo" value="{{$aluno->nome}}" readonly>
                                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                     </div>
                                 </div>
@@ -33,7 +33,7 @@
                                     <label for="email">Email</label>
                                     <div class="input-group">
                                         <input type="email" class="form-control" id="email" name="email"
-                                               placeholder="Email" value="fulano_detal@gmail.com" readonly>
+                                               placeholder="Email" value="{{$aluno->email}}" readonly>
                                         <span class="input-group-addon"><i class="fa fa-at"></i></span>
                                     </div>
                                 </div>
@@ -42,7 +42,7 @@
                                     <label for="cpf">CPF</label>
                                     <div class="input-group">
                                         <input type="text" id="cpf" name="cpf" class="form-control cpf"
-                                               placeholder="CPF" value="131.131.234-45" readonly>
+                                               placeholder="CPF" value="{{$aluno->CPF}}" readonly>
                                         <span
                                                 class="input-group-addon"><i class="fa fa-id-card-o"
                                                                              aria-hidden="true"></i></span>
@@ -63,31 +63,26 @@
                                         </tr>
                                         </thead>
                                         <tbody>
+                                        @foreach($aluno->cursos() as $curso)
                                         <tr>
                                             <th scope="row">1</th>
                                             <td>Mark</td>
                                             <td>Otto</td>
                                             <td>@mdo</td>
                                         </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                            <td>@twitter</td>
-                                        </tr>
+                                        @endforeach
+                                        @if($aluno->cursos->isEmpty())
+                                            <tr class="no-records-found" style="text-align: center;">
+                                                <td colspan="7">O Aluno não possui inscrições</td>
+                                            </tr>
+                                        @endif
                                         </tbody>
                                     </table>
                                 </div>
                                 <legend>Dados da Mensalidade</legend>
                                 <div class="form-group">
                                     <label for="nome">Valor</label>
-                                    <input type="text" class="form-control" id="valor" name="valor" value="200,00"
+                                    <input type="text" class="form-control" id="valor" name="valor" value="{{($aluno->mensalidade->valor == null)? '0,00': $aluno->mensalidade->valor}}"
                                            readonly>
                                 </div>
                                 <div class="form-group">
@@ -96,7 +91,7 @@
                                         <input id="vencimento" name="vencimento" class="form-control"
                                                data-date-end-date="0d"
                                                data-mask="99/99/9999" data-mask-placeholder="-"
-                                               placeholder="Data Pagamento" value="20/10/1992" readonly>
+                                               placeholder="Data Pagamento" value="{{$aluno->mensalidade->diaVencimento}}" readonly>
                                         <span
                                                 class="input-group-addon"><i
                                                     class="glyphicon glyphicon-calendar"></i></span>
@@ -153,7 +148,7 @@
                                 </div>
                             </fieldset>
 
-                            <button class="btn btn-primary" type="submit">
+                            <button class="btn btn-primary" type="submit" {{$aluno->cursos->isEmpty() ? 'disabled' : ''}}>
                                 <i class="fa fa-save"></i>
                                 Salvar
                             </button>
