@@ -18,37 +18,59 @@
                 <div class="content-box-large box-with-header">
                     <div class="panel-body">
                         {{-- Formulário de cadastro --}}
-                        <form>
+                        <form method="post" action="{{route('/salvar/instrumento')}}" enctype="multipart/form-data">
+                            {{csrf_field()}}
                             <fieldset>
                                 <legend>Dados do Instrumento</legend>
                             </fieldset>
-                                <div class="form-group">
-                                    <label for="nome">Nome</label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" id="nome" name="nome"
-                                               placeholder="Nome do Instrumento">
-                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                    </div>
+                            <div class="form-group {{$errors->has('nome') ? 'has-error' : ''}}">
+                                <label for="nome">Nome</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="nome" name="nome"
+                                           placeholder="Nome do Instrumento">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                 </div>
-                                <div class="form-group">
-                                    <label for="imagem">Imagem</label>
-                                    <div class="">
-                                        <input type="file" class="btn btn-default" id="imagem" name="imagem">
-                                    </div>
+                                @if ($errors->has('nome'))
+                                    <span class="help-block">
+                                                <p class="help-block text-danger text-left"><strong>{{ $errors->first('nome') }}</strong></p>
+                                            </span>
+                                @endif
+                            </div>
+                            <div class="form-group {{$errors->has('imagem') ? 'has-error' : ''}}">
+                                <label for="imagem">Imagem</label>
+                                <div class="">
+                                    <input type="file" class="btn btn-default" id="imagem" name="imagem">
                                 </div>
-                                <div class="form-group">
-                                    <label for="descricao">Descrição</label>
-                                    <div class="input-group">
+                                @if ($errors->has('imagem'))
+                                    <span class="help-block">
+                                                <p class="help-block text-danger text-left"><strong>{{ $errors->first('imagem') }}</strong></p>
+                                     </span>
+                                @endif
+                            </div>
+                            <div class="form-group">
+                                <label for="file" class="control-label">Imagem do Produto</label>
+                                <div class="img-centered img-responsive">
+                                    <img src="{{asset("img/beer-bottle.png")}}" class="img-centered img-responsive" id="imagemInstrumento">
+                                </div>
+                            </div>
+                            <div class="form-group {{$errors->has('descricao') ? 'has-error' : ''}}">
+                                <label for="descricao">Descrição</label>
+
                                         <textarea class="form-control" id="descricao" name="descricao"
                                                   placeholder="Descrição do Instrumento"></textarea>
-                                        <span class="input-group-addon"><i class="fa fa-at"></i></span>
-                                    </div>
-                                </div>
+                                   {{-- <span class="input-group-addon"><i class="fa fa-at"></i></span>--}}
 
-                                <button class="btn btn-primary" type="submit">
-                                    <i class="fa fa-save"></i>
-                                    Salvar
-                                </button>
+                                @if ($errors->has('descricao'))
+                                    <span class="help-block">
+                                                <p class="help-block text-danger text-left"><strong>{{ $errors->first('descricao') }}</strong></p>
+                                            </span>
+                                @endif
+                            </div>
+
+                            <button class="btn btn-primary" type="submit">
+                                <i class="fa fa-save"></i>
+                                Salvar
+                            </button>
                         </form>
                         {{-- Fim do formulário de cadastro --}}
                     </div>
@@ -83,4 +105,24 @@
     <script src="{{asset('js/jquery.mask.js')}}"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
     <script src="{{asset('js/forms.js')}}"></script>
-@endpush
+    @push('scripts')
+        <script type="text/javascript">
+            // TODO exportar código para arquivo externo
+            $("#imagem").on('change', function () {
+                //alert("ola mundo");
+                readURL(this);
+            });
+
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#imagemInstrumento').attr('src', e.target.result);
+                        console.log('ola')
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+        </script>
+    @endpush

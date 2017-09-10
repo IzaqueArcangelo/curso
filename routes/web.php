@@ -20,7 +20,7 @@ Route::get('/', 'ControladorPadrao@inicio')->name('/');
 */
 
 Route::get('/agenda', 'AgendaController@agenda')->name('/agenda');
-Route::get('/agendar/aula', 'AgendaController@agendar')->name('/agendar/aula');
+Route::get('/agendar/aula/dia/{id}', 'AgendaController@agendar')->name('/agendar/aula/dia');
 
 
 /*
@@ -70,6 +70,7 @@ Route::get('/manter/cadastros/curso', 'CursoController@manterCadastros')->name('
 */
 
 Route::get('/cadastrar/instrumento', 'InstrumentoController@cadastrar')->name('/cadastrar/instrumento');
+Route::post('/salvar/instrumento', 'InstrumentoController@salvar')->name('/salvar/instrumento');
 Route::get('/manter/cadastros/instrumento', 'InstrumentoController@manterCadastros')->name('/manter/cadastros/instrumento');
 
 /*
