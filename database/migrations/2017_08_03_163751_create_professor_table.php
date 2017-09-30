@@ -18,8 +18,7 @@ class CreateProfessorTable extends Migration
             $table->string('nome');
             $table->string('email');
             $table->string('telefone');
-            $table->string('CPF')->unique();
-            $table->string('matricula');
+            $table->string('matricula')->unique();;
         });
     }
 

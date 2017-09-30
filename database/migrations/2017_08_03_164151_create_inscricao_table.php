@@ -16,13 +16,18 @@ class CreateInscricaoTable extends Migration
         Schema::create('inscricao', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->dateTime('dataInscricao');
-            $table->dateTime('dataCancelamento');
-            $table->integer('id_mensalidade')->unsigned();
+            $table->string('horaInicio');
+            $table->string('horaTermino');
+
+            $table->integer('id_dia')->unsigned();
             $table->integer('id_aluno')->unsigned();
             $table->integer('id_curso')->unsigned();
-            $table->foreign('id_mensalidade')->references('id')->on('mensalidade');
+            $table->integer('id_professor')->unsigned();
+
             $table->foreign('id_aluno')->references('id')->on('aluno');
+            $table->foreign('id_dia')->references('id')->on('dia');
             $table->foreign('id_curso')->references('id')->on('curso');
+            $table->foreign('id_professor')->references('id')->on('professor');
         });
     }
 
