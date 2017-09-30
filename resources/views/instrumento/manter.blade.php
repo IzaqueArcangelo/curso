@@ -32,7 +32,7 @@
                 <div class="content-box-large box-with-header">
                     <div class="panel-body">
                         <!-- Tabela -->
-                        <table class="table">
+                        <table class="table table-striped tabela-centralizada">
                             <thead>
                             <tr>
                                 <th>#</th>
@@ -44,12 +44,36 @@
                             <tbody>
                             @foreach($instrumentos as $instrumento)
                             <tr>
-                                <th scope="row">{{$instrumento->id}}</th>
+                                <td>{{$instrumento->id}}</td>
                                 <td>{{$instrumento->nome}}</td>
-                                <td>{{$instrumento->imagem}}</td>
                                 <td>{{$instrumento->descricao }}</td>
+                                <td style="text-align: center;">
+                                    <button class="btn-nude" onclick="document.getElementById('info-form-{{$instrumento->id}}').submit();"><i class="fa fa-info-circle" title="Informações" aria-hidden="true"></i></button>
+                                    <button class="btn-nude" onclick="document.getElementById('editar-form-{{$instrumento->id}}').submit();"><i class="fa fa-pencil-square-o" title="Editar" aria-hidden="true"></i></button>
+                                    <button class="btn-nude" onclick="document.getElementById('deletar-form-{{$instrumento->id}}').submit();"><i class="fa fa-trash-o" title="Apagar" aria-hidden="true"></i></button>
+                                </td>
                             </tr>
+                            <form id="info-form-{{$instrumento->id}}"
+                                  method="GET"
+                                  action="{{route('/informacoes/instrumento',$instrumento->id)}}">
+                                {{--{{csrf_field()}}--}}
+                            </form>
+                            <form id="editar-form-{{$instrumento->id}}"
+                                  method="GET"
+                                  action="{{route('/editar/instrumento',$instrumento->id)}}">
+                                {{--{{csrf_field()}}--}}
+                            </form>
+                            <form id="deletar-form-{{$instrumento->id}}"
+                                  method="GET"
+                                  action="{{route('/deletar/instrumento',$instrumento->id)}}">
+                                {{--{{csrf_field()}}--}}
+                            </form>
                            @endforeach
+                            @if($instrumentos->isEmpty())
+                                <tr class="no-records-found" style="text-align: center;">
+                                    <td colspan="7">Não há instrumentos cadastrados</td>
+                                </tr>
+                            @endif
                             </tbody>
                         </table>
                     </div>

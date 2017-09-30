@@ -32,47 +32,45 @@
                 <div class="content-box-large box-with-header">
                     <div class="panel-body">
                         <!-- Tabela -->
-                        <table class="table">
+                        <table class="table table-striped tabela-centralizada">
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Username</th>
+                                <th>Curso</th>
+                                <th>Valor</th>
+                                <th>Instrumento</th>
                                 <th><i class="glyphicon glyphicon-cog"></i></th>
                             </tr>
                             </thead>
                             <tbody>
+                            @foreach($cursos as $curso)
                             <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>
-                                    <i class="fa fa-info-circle" aria-hidden="true"></i>
-                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                <td>{{$curso->id}}</th>
+                                <td>{{$curso->nome}}</th>
+                                <td>{{$curso->valor}}</th>
+                                <td>{{$curso->instrumento->nome}}</th>
+                                <td style="text-align: center;">
+                                    <button class="btn-nude" onclick="document.getElementById('info-form-{{$curso->id}}').submit();"><i class="fa fa-info-circle" title="Informações" aria-hidden="true"></i></button>
+                                    <button class="btn-nude" onclick="document.getElementById('editar-form-{{$curso->id}}').submit();"><i class="fa fa-pencil-square-o" title="Editar" aria-hidden="true"></i></button>
+                                    <button class="btn-nude" onclick="document.getElementById('deletar-form-{{$curso->id}}').submit();"><i class="fa fa-trash-o" title="Apagar" aria-hidden="true"></i></button>
                                 </td>
+                                <form id="info-form-{{$curso->id}}"
+                                      method="GET"
+                                      action="{{route('/informacoes/curso',$curso->id)}}">
+                                    {{--{{csrf_field()}}--}}
+                                </form>
+                                <form id="editar-form-{{$curso->id}}"
+                                      method="GET"
+                                      action="{{route('/editar/curso',$curso->id)}}">
+                                    {{--{{csrf_field()}}--}}
+                                </form>
+                                <form id="deletar-form-{{$curso->id}}"
+                                      method="GET"
+                                      action="{{route('/deletar/curso',$curso->id)}}">
+                                    {{--{{csrf_field()}}--}}
+                                </form>
                             </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                                <td>
-                                    <i class="fa fa-info-circle" aria-hidden="true"></i>
-                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                                <td>
-                                    <i class="fa fa-info-circle" aria-hidden="true"></i>
-                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                </td>
-                            </tr>
+                           @endforeach
                             </tbody>
                         </table>
                     </div>

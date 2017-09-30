@@ -13,14 +13,18 @@ Route::get('/', 'ControladorPadrao@inicio')->name('/');
 
 /*
 |--------------------------------------------------------------------------
-| Agenda Controller
+| Incricao Controller
 |--------------------------------------------------------------------------
 | Rotas que poderão ser acessadas por qualquer usuário
 |
 */
 
-Route::get('/agenda', 'AgendaController@agenda')->name('/agenda');
-Route::get('/agendar/aula/dia/{id}', 'AgendaController@agendar')->name('/agendar/aula/dia');
+Route::get('/agenda', 'IncricaoController@agenda')->name('/agenda');
+Route::get('/agendar/aula/dia/{id}', 'IncricaoController@agendar')->name('/agendar/aula/dia');
+Route::post('/salvar/agendamento', 'IncricaoController@salvarAgendamento')->name('/salvar/agendamento');
+Route::get('/editar/agendamento/{id}', 'IncricaoController@editarAgendamento')->name('/editar/agendamento');
+Route::put('/atualizar/agendamento/{id}', 'IncricaoController@atualizar')->name('/atualizar/agendamento');
+Route::get('/deletar/agendamento/{id}', 'IncricaoController@deletar')->name('/deletar/agendamento');
 
 
 /*
@@ -49,6 +53,9 @@ Route::get('/manter/cadastros/aluno', 'AlunoController@manterCadastros')->name('
 
 Route::get('/cadastrar/professor', 'ProfessorController@cadastrar')->name('/cadastrar/professor');
 Route::get('/manter/cadastros/professor', 'ProfessorController@manterCadastros')->name('/manter/cadastros/professor');
+Route::post('/salvar/professor', 'ProfessorController@salvarProfessor')->name('/salvar/professor');
+Route::get('/editar/professor/{id}', 'ProfessorController@editarProfessor')->name('/editar/professor');
+Route::put('/atualizar/professor/{id}', 'ProfessorController@atualizar')->name('/atualizar/professor');
 
 /*
 |--------------------------------------------------------------------------
@@ -59,7 +66,13 @@ Route::get('/manter/cadastros/professor', 'ProfessorController@manterCadastros')
 */
 
 Route::get('/cadastrar/curso', 'CursoController@cadastrar')->name('/cadastrar/curso');
+Route::get('/editar/curso/{id}', 'CursoController@editar')->name('/editar/curso');
+Route::put('/atualizar/curso/{id}', 'CursoController@atualizar')->name('/atualizar/curso');
+Route::get('/deletar/curso/{id}', 'CursoController@deletar')->name('/deletar/curso');
+Route::get('/insformacoes/curso/{id}', 'CursoController@info')->name('/informacoes/curso');
+Route::post('/salvar/curso', 'CursoController@salvar')->name('/salvar/curso');
 Route::get('/manter/cadastros/curso', 'CursoController@manterCadastros')->name('/manter/cadastros/curso');
+Route::get('/listar/professores/curso/{id}', 'CursoController@listarProfessores')->name('/listar/professores/curso');
 
 /*
 |--------------------------------------------------------------------------
@@ -71,6 +84,10 @@ Route::get('/manter/cadastros/curso', 'CursoController@manterCadastros')->name('
 
 Route::get('/cadastrar/instrumento', 'InstrumentoController@cadastrar')->name('/cadastrar/instrumento');
 Route::post('/salvar/instrumento', 'InstrumentoController@salvar')->name('/salvar/instrumento');
+Route::put('/atualizar/instrumento/{id}', 'InstrumentoController@atualizar')->name('/atualizar/instrumento');
+Route::get('/editar/instrumento/{id}', 'InstrumentoController@editar')->name('/editar/instrumento');
+Route::get('/deletar/instrumento/{id}', 'InstrumentoController@deletar')->name('/deletar/instrumento');
+Route::get('/informacoes/instrumento/{id}', 'InstrumentoController@info')->name('/informacoes/instrumento');
 Route::get('/manter/cadastros/instrumento', 'InstrumentoController@manterCadastros')->name('/manter/cadastros/instrumento');
 
 /*

@@ -15,8 +15,6 @@ class PagamentoController extends Controller
 
     public function informacao($id){
         $aluno = Aluno::find($id);
-        $mesReferencia = Mes::all();
-        $anoReferencia = Ano::all();
-        return view('pagamento.informacao', compact('mesReferencia', 'anoReferencia', 'aluno'));
+        return view('pagamento.informacao', compact('aluno'));
     }
 }

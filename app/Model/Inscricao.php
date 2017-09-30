@@ -13,11 +13,16 @@ class Inscricao extends Model
         return $this->belongsTo('App\Model\Aluno', 'id_aluno', 'id');
     }
 
+    public function professor(){
+        return $this->belongsTo('App\Model\Professor', 'id_professor', 'id');
+    }
+
     public function curso(){
         return $this->belongsTo('App\Model\Curso', 'id_curso', 'id');
     }
 
-    public function mensalidade(){
-        $this->belongsTo('App\Model\Mensalidade', 'id_mensalidade', 'id');
+    public function dia(){
+        return $this->belongsTo('App\Model\Dia', 'id_dia', 'id');
     }
+
 }

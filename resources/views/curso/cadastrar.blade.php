@@ -18,41 +18,63 @@
                 <div class="content-box-large box-with-header">
                     <div class="panel-body">
                         {{-- Formulário de cadastro --}}
-                        <form>
-                            <fieldset>
+                        @isset($curso)
+                            <form action="{{route('/atualizar/curso', $curso->id)}}" method="POST">
+                                {!! method_field('PUT') !!}
+                                @else
+                                <form action="{{route('/salvar/curso')}}" method="post">
+                                    @endisset
+                                    {{csrf_field()}}
+                                <fieldset>
                                 <legend>Dados do Curso</legend>
-                                <div class="form-group">
+                                <div class="form-group {{ $errors->has('nome') ? ' has-error' : '' }}">
                                     <label for="nome">Nome Curso</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="nomeCurso" name="nomeCurso" placeholder="Nome do Curso">
+                                        <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome do Curso" value="{{ $curso->nome or old('nome')}}" {{isset($readonly) ? 'readonly' : ''}}>
                                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                     </div>
+                                    @if ($errors->has('nome'))
+                                        <span class="help-block">
+                                            <p class="help-block text-danger text-left"><strong>{{ $errors->first('nome') }}</strong></p>
+                                        </span>
+                                    @endif
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group {{ $errors->has('valor') ? ' has-error' : '' }}">
                                     <label for="nome">Valor</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="valor" name="valor" placeholder="Valor do Curso">
+                                        <input type="text" class="form-control" id="valor" name="valor" placeholder="Valor do Curso" value="{{$curso->valor or old('valor')}}" {{isset($readonly) ? 'readonly' : ''}}>
                                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                     </div>
+                                    @if ($errors->has('valor'))
+                                        <span class="help-block">
+                                            <p class="help-block text-danger text-left"><strong>{{ $errors->first('valor') }}</strong></p>
+                                        </span>
+                                    @endif
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group {{ $errors->has('instrumento') ? ' has-error' : '' }}">
                                     <label for="nome">Instrumento</label>
                                     <div class="input-group">
-                                    <select class="selectpicker" name="diaVencimento">
+                                    <select class="selectpicker " name="instrumento" data-live-search="true" {{isset($readonly) ? 'disabled' : ''}}>
                                         <option disabled selected>Selecione</option>
                                         @foreach($instrumentos as $instrumento)
-                                            <option value="{{$instrumento->id}}">{{$instrumento->nome}}</option>
-                                       @endforeach
+                                            <option value="{{$instrumento->id}}" data-tokens="{{$instrumento->nome}}" {{ (( isset($curso) ? $curso->instrumento->id : old('instrumento')) == $instrumento->id) ? "selected" : ""}} >{{$instrumento->nome}}</option>
+                                        @endforeach
                                     </select>
+                                        @if ($errors->has('instrumento'))
+                                            <span class="help-block">
+                                            <p class="help-block text-danger text-left"><strong>{{ $errors->first('nome') }}</strong></p>
+                                        </span>
+                                        @endif
                                     </div>
                                 </div>
                             </fieldset>
-                            <button class="btn btn-primary" type="submit">
+                            <button class="btn btn-primary" type="submit" {{isset($readonly) ? 'disabled' : ''}}>
                                 <i class="fa fa-save"></i>
-                                Salvar
+                                {{isset($curso) ? 'Atualizar' : 'Salvar'}}
                             </button>
                         </form>
                         {{-- Fim do formulário de cadastro --}}
+                      </form>
                     </div>
                 </div>
             </div>

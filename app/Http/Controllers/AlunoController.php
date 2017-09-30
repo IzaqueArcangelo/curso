@@ -149,13 +149,15 @@ class AlunoController extends Controller
     }
 
     public function info($id){
+        // TODO: exibir os dias de aula e o valor da mensalidade na tela de informações do aluno.
         $aluno =  Aluno::find($id);
         $aluno->dataNascimento = \Carbon\Carbon::parse($aluno->dataNascimento)->format('d/m/Y');
         $readonly = true;
-        return view('aluno.cadastrar', compact('aluno', 'readonly'));
+        return view('aluno.informacao', compact('aluno', 'readonly'));
     }
 
     public function deletar($id){
+        DB::beginTransaction();
         try{
             $aluno =  Aluno::find($id);
             $status = $aluno->delete();

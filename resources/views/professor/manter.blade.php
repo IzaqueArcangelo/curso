@@ -5,7 +5,8 @@
             <div class="col-md-offset-7 col-md-5 mg-bottom-20">
                 <form name="form-consulta" method="get" action="/">
                     <div class="input-group">
-                        <input type="text" name="nomeProduto" class="form-control input-lg" placeholder="Pesquisar professor">
+                        <input type="text" name="nomeProduto" class="form-control input-lg"
+                               placeholder="Pesquisar professor">
                         <span class="input-group-addon">
                                     <button type="submit" class="btn-search">
                                         <span class="glyphicon glyphicon-search"></span>
@@ -32,34 +33,47 @@
                 <div class="content-box-large box-with-header">
                     <div class="panel-body">
                         <!-- Tabela -->
-                        <table class="table">
+                        <table class="table table-striped tabela-centralizada">
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Username</th>
+                                <th>Nome</th>
+                                <th>Email</th>
+                                <th>Telefone</th>
+                                <th>Matricula</th>
+                                <th><i class="glyphicon glyphicon-cog"></i></th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
+                            @foreach($professores as $professor)
+                                <tr>
+                                    <td>{{$professor->id}}</td>
+                                    <td>{{$professor->nome}}</td>
+                                    <td>{{$professor->email}}</td>
+                                    <td>{{$professor->telefone}}</td>
+                                    <td>{{$professor->matricula}}</td>
+                                    <td>
+                                        <button class="btn-nude" onclick="document.getElementById('info-form-{{$professor->id}}').submit();"><i class="fa fa-info-circle" title="Informações" aria-hidden="true"></i></button>
+                                        <button class="btn-nude" onclick="document.getElementById('editar-form-{{$professor->id}}').submit();"><i class="fa fa-pencil-square-o" title="Editar" aria-hidden="true"></i></button>
+                                        <button class="btn-nude" onclick="document.getElementById('deletar-form-{{$professor->id}}').submit();"><i class="fa fa-trash-o" title="Apagar" aria-hidden="true"></i></button>
+                                    </td>
+                                </tr>
+                                <form id="info-form-{{$professor->id}}"
+                                      method="GET"
+                                      action="{{route('/informacoes/aluno',$professor->id)}}">
+                                    {{--{{csrf_field()}}--}}
+                                </form>
+                                <form id="editar-form-{{$professor->id}}"
+                                      method="GET"
+                                      action="{{route('/editar/professor',$professor->id)}}">
+                                    {{--{{csrf_field()}}--}}
+                                </form>
+                                <form id="deletar-form-{{$professor->id}}"
+                                      method="GET"
+                                      action="{{route('/deletar/aluno',$professor->id)}}">
+                                    {{--{{csrf_field()}}--}}
+                                </form>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

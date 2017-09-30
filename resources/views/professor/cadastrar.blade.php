@@ -18,66 +18,130 @@
                 <div class="content-box-large box-with-header">
                     <div class="panel-body">
                         {{-- Formulário de cadastro --}}
-                        <form>
-                            <fieldset>
-                                <legend>Dados do Professor</legend>
-                                <div class="form-group">
-                                    <label for="nome">Nome</label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" id="nome" name="nome"
-                                               placeholder="Nome completo">
-                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <div class="input-group">
-                                        <input type="email" class="form-control" id="email" name="email"
-                                               placeholder="Email">
-                                        <span class="input-group-addon"><i class="fa fa-at"></i></span>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="telefone">Telefone</label>
-                                    <div class="input-group">
-                                        <input id="telefone" name="telefone" type="text" class="form-control"
-                                               data-mask="(99) 99999-9999"
-                                               data-mask-placeholder="9" placeholder="Telefone">
-                                        <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                                    </div>
-                                </div>
+                        @isset($professor)
+                            <form action="{{route('/atualizar/professor', $professor->id)}}" method="POST">
+                                {!! method_field('PUT') !!}
+                                @else
+                                    <form action="{{route('/salvar/professor')}}" method="post">
+                                        @endisset
+                                        {{csrf_field()}}
+                                        <fieldset>
+                                            <legend>Dados do Professor</legend>
+                                            <div class="form-group {{ $errors->has('nome') ? ' has-error' : '' }}">
+                                                <label for="nome" class="control-label">Nome</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" id="nome" name="nome"
+                                                           placeholder="Nome completo"
+                                                           value="{{$professor->nome or old('nome')}}">
+                                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                </div>
+                                                @if ($errors->has('nome'))
+                                                    <span class="help-block">
+                                            <p class="help-block text-danger text-left"><strong>{{ $errors->first('nome') }}</strong></p>
+                                        </span>
+                                                @endif
+                                            </div>
+                                            <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
+                                                <label for="email" class="control-label">Email</label>
+                                                <div class="input-group">
+                                                    <input type="email" class="form-control" id="email" name="email"
+                                                           placeholder="Email"
+                                                           value="{{$professor->email or old('email')}}">
+                                                    <span class="input-group-addon"><i class="fa fa-at"></i></span>
+                                                </div>
+                                                @if ($errors->has('email'))
+                                                    <span class="help-block">
+                                            <p class="help-block text-danger text-left"><strong>{{ $errors->first('email') }}</strong></p>
+                                        </span>
+                                                @endif
+                                            </div>
+                                            <div class="form-group {{ $errors->has('telefone') ? ' has-error' : '' }}">
+                                                <label for="telefone" class="control-label">Telefone</label>
+                                                <div class="input-group">
+                                                    <input id="telefone" name="telefone" type="text"
+                                                           class="form-control"
+                                                           data-mask="(99) 99999-9999"
+                                                           data-mask-placeholder="9" placeholder="Telefone"
+                                                           value="{{$professor->telefone or old('telefone')}}">
+                                                    <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                                                </div>
+                                                @if ($errors->has('telefone'))
+                                                    <span class="help-block">
+                                            <p class="help-block text-danger text-left"><strong>{{ $errors->first('telefone') }}</strong></p>
+                                        </span>
+                                                @endif
+                                            </div>
 
-                                <div class="form-group">
-                                    <label for="matricula">Matricula</label>
-                                    <div class="input-group">
-                                        <input type="text" id="matricula" name="matricula" class="form-control"
-                                               placeholder="Matrícula">
-                                        <span
-                                                class="input-group-addon"><i
-                                                    class="glyphicon glyphicon-calendar"></i></span>
-                                    </div>
-                                </div>
+                                            <div class="form-group {{ $errors->has('matricula') ? ' has-error' : '' }}">
+                                                <label for="matricula" class="control-label">Matricula</label>
+                                                <div class="input-group">
+                                                    <input type="text" id="matricula" name="matricula"
+                                                           class="form-control"
+                                                           placeholder="Matrícula"
+                                                           value="{{$professor->matricula or old('matricula')}}">
+                                                    <span
+                                                            class="input-group-addon"><i
+                                                                class="glyphicon glyphicon-calendar"></i></span>
+                                                </div>
+                                                @if ($errors->has('matricula'))
+                                                    <span class="help-block">
+                                            <p class="help-block text-danger text-left"><strong>{{ $errors->first('matricula') }}</strong></p>
+                                        </span>
+                                                @endif
+                                            </div>
 
-                                <div class="form-group">
-                                    <label for="nome">Lista de Cursos</label>
-                                    <div class="input-group">
-                                        <select class="selectpicker" title="Selecione" name="cursos" multiple>
-                                            <option disabled>Selecione os cursos</option>
-                                            @foreach($cursos as $curso)
-                                                <option value="{{$curso->instrumento->id}}">{{$curso->instrumento->nome}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                            </fieldset>
+                                            <div class="form-group {{ $errors->has('cursos') ? ' has-error' : '' }}">
+                                                <label for="nome" class="control-label">Lista de Cursos</label>
+                                                <div class="input-group">
+                                                    <select class="selectpicker" title="Selecione" name="cursos[]"
+                                                            multiple data-live-search="true">
+                                                        <option disabled>Selecione os cursos</option>
+                                                        @foreach($cursos as $curso)
+                                                            @isset($professor)
+                                                                @if($professor->cursos->contains($curso->id))
+                                                                    <option value="{{$curso->id}}"
+                                                                            data-tokens="{{$curso->nome}}"
+                                                                            data-subtext="{{$curso->valor}}"
+                                                                            selected>{{$curso->nome}}</option>
+                                                                @else
+                                                                    <option value="{{$curso->id}}"
+                                                                            data-tokens="{{$curso->nome}}"
+                                                                            data-subtext="{{$curso->valor}}"
+                                                                            >{{$curso->nome}}</option>
+                                                                @endif
+                                                                @else
+                                                                    @if(collect(old('cursos'))->contains($curso->id))
+                                                                        <option value="{{$curso->id}}"
+                                                                                data-tokens="{{$curso->nome}}"
+                                                                                data-subtext="{{$curso->valor}}"
+                                                                                selected>{{$curso->nome}}</option>
+                                                                    @else
+                                                                        <option value="{{$curso->id}}"
+                                                                                data-tokens="{{$curso->nome}}"
+                                                                                data-subtext="{{$curso->valor}}"
+                                                                                >{{$curso->nome}}</option>
+                                                                    @endif
+                                                            @endisset
+
+                                                       @endforeach
+                                                    </select>
+                                                    @if ($errors->has('cursos'))
+                                                        <span class="help-block">
+                                            <p class="help-block text-danger text-left"><strong>{{ $errors->first('cursos') }}</strong></p>
+                                        </span>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </fieldset>
 
 
-                            <button class="btn btn-primary" type="submit">
-                                <i class="fa fa-save"></i>
-                                Salvar
-                            </button>
-                        </form>
-                        {{-- Fim do formulário de cadastro --}}
+                                        <button class="btn btn-primary" type="submit">
+                                            <i class="fa fa-save"></i>
+                                            Salvar
+                                        </button>
+                                    </form>
+                            </form>
+                            {{-- Fim do formulário de cadastro --}}
                     </div>
                 </div>
             </div>

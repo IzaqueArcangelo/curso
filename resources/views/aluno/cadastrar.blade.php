@@ -10,7 +10,7 @@
             <div class="col-md-12 panel-default">
                 <div class="content-box-header panel-heading">
                     <div class="panel-title ">
-                        {{ isset($aluno) ? 'Editar' : 'Cadastrar' }} Aluno
+                        {{isset($aluno)? 'Editar' : 'Cadastrar'}} Aluno
                     </div>
                     <div class="panel-options">
                         <a href="#" data-rel="collapse"><i class="glyphicon glyphicon-refresh"></i></a>
@@ -226,7 +226,9 @@
                                         </span>
                                                 @endif
                                             </div>
+
                                         </fieldset>
+
                                         <button class="btn btn-primary" type="submit" {{ isset($readonly) ? 'disabled' : ''}}>
                                             <i class="fa fa-save"></i>
                                             {{ isset($aluno) ? 'Atualizar' : 'Salvar'}}

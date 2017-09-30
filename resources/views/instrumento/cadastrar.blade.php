@@ -18,7 +18,12 @@
                 <div class="content-box-large box-with-header">
                     <div class="panel-body">
                         {{-- Formulário de cadastro --}}
-                        <form method="post" action="{{route('/salvar/instrumento')}}" enctype="multipart/form-data">
+                        @isset($instrumento)
+                            <form action="{{route('/atualizar/instrumento', $instrumento->id)}}" method="POST" enctype="multipart/form-data">
+                                {!! method_field('PUT') !!}
+                                @else
+                                    <form method="post" action="{{route('/salvar/instrumento')}}" enctype="multipart/form-data">
+                                        @endisset
                             {{csrf_field()}}
                             <fieldset>
                                 <legend>Dados do Instrumento</legend>
@@ -27,7 +32,7 @@
                                 <label for="nome">Nome</label>
                                 <div class="input-group">
                                     <input type="text" class="form-control" id="nome" name="nome"
-                                           placeholder="Nome do Instrumento">
+                                           placeholder="Nome do Instrumento" value="{{$instrumento->nome or old('nome')}}"  {{ isset($readonly)? 'readonly' : '' }}>
                                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                 </div>
                                 @if ($errors->has('nome'))
@@ -39,7 +44,7 @@
                             <div class="form-group {{$errors->has('imagem') ? 'has-error' : ''}}">
                                 <label for="imagem">Imagem</label>
                                 <div class="">
-                                    <input type="file" class="btn btn-default" id="imagem" name="imagem">
+                                    <input type="file" class="btn btn-default" id="imagem" name="imagem" {{ isset($readonly)? 'disabled' : '' }}>
                                 </div>
                                 @if ($errors->has('imagem'))
                                     <span class="help-block">
@@ -50,15 +55,19 @@
                             <div class="form-group">
                                 <label for="file" class="control-label">Imagem do Produto</label>
                                 <div class="img-centered img-responsive">
-                                    <img src="{{asset("img/beer-bottle.png")}}" class="img-centered img-responsive" id="imagemInstrumento">
+                                    @isset($instrumento)
+                                        <img src="{{Storage::exists($instrumento->imagem)? asset('/storage/' . $instrumento->imagem) : asset("img/beer-bottle.png")}}" class="img-centered img-responsive" id="imagemInstrumento">
+                                        @else
+                                        <img src="{{asset("img/beer-bottle.png")}}" class="img-centered img-responsive" id="imagemInstrumento">
+                                    @endisset
                                 </div>
                             </div>
                             <div class="form-group {{$errors->has('descricao') ? 'has-error' : ''}}">
                                 <label for="descricao">Descrição</label>
 
                                         <textarea class="form-control" id="descricao" name="descricao"
-                                                  placeholder="Descrição do Instrumento"></textarea>
-                                   {{-- <span class="input-group-addon"><i class="fa fa-at"></i></span>--}}
+                                                  placeholder="Descrição do Instrumento" {{ isset($readonly)? 'readonly' : '' }}>{{$instrumento->descricao or old('descricao')}}</textarea>
+
 
                                 @if ($errors->has('descricao'))
                                     <span class="help-block">
@@ -67,12 +76,14 @@
                                 @endif
                             </div>
 
-                            <button class="btn btn-primary" type="submit">
+                            <button class="btn btn-primary" {{ isset($readonly)? 'disabled' : '' }} type="submit">
                                 <i class="fa fa-save"></i>
-                                Salvar
+                                {{ isset($instrumento) ? 'Atualizar' : 'Salvar'}}
                             </button>
-                        </form>
+                            </form>
+                            </form>
                         {{-- Fim do formulário de cadastro --}}
+
                     </div>
                 </div>
             </div>

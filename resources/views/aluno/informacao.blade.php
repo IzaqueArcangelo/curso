@@ -63,12 +63,12 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($aluno->cursos() as $curso)
+                                        @foreach($aluno->cursos as $curso)
                                         <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
+                                            <td>{{$curso->id}}</th>
+                                            <td>{{$curso->nome}}</td>
+                                            <td>{{$curso->valor}}</td>
+                                            <td>Professor</td>
                                         </tr>
                                         @endforeach
                                         @if($aluno->cursos->isEmpty())
@@ -82,8 +82,13 @@
                                 <legend>Dados da Mensalidade</legend>
                                 <div class="form-group">
                                     <label for="nome">Valor</label>
+                                    <div class="input-group">
                                     <input type="text" class="form-control" id="valor" name="valor" value="{{($aluno->mensalidade->valor == null)? '0,00': $aluno->mensalidade->valor}}"
                                            readonly>
+                                        <span
+                                                class="input-group-addon"><i class="fa fa-usd"
+                                                                             aria-hidden="true"></i></span>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="dtNascimento">Vencimento</label>
@@ -98,55 +103,7 @@
                                     </div>
                                 </div>
                             </fieldset>
-                            <fieldset>
-                                <legend>Informações de Pagamento</legend>
-                                <div class="form-group">
-                                    <label for="dtNascimento">Data Pagamento</label>
-                                    <div class="input-group" id="dataPagamento">
-                                        <input id="dtPagamento" name="dtPagamento" class="form-control"
-                                               data-date-end-date="0d"
-                                               data-mask="99/99/9999" data-mask-placeholder="-"
-                                               placeholder="Data Pagamento">
-                                        <span
-                                                class="input-group-addon"><i
-                                                    class="glyphicon glyphicon-calendar"></i></span>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="dtNascimento">Valor</label>
-                                    <div class="input-group">
-                                        <input type="text" id="valorPg" name="valorPg" class="form-control"
-                                               placeholder="Valor Pago" value="189,99">
-                                        <span
-                                                class="input-group-addon"><i class="fa fa-usd"
-                                                                             aria-hidden="true"></i></span>
-                                    </div>
-                                </div>
 
-                                <div class="form-group">
-                                    <label for="nome">Mês Referência</label>
-                                    <div class="input-group">
-                                        <select class="selectpicker" name="diaVencimento">
-                                            <option disabled selected>Selecione</option>
-                                            {{--@foreach($mesReferencia as $mes)
-                                                <option value="{{$mes->cod_mes}}">{{$mes->nome}}</option>
-                                            @endforeach--}}
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="nome">Ano Referência</label>
-                                    <div class="input-group">
-                                        <select class="selectpicker">
-                                            <option disabled selected>Selecione</option>
-                                           {{-- @foreach($anoReferencia as $ano)
-                                                <option value="{{$ano->id}}">{{$ano->ano}}</option>
-                                            @endforeach--}}
-                                        </select>
-                                    </div>
-                                </div>
-                            </fieldset>
 
                             <button class="btn btn-primary" type="submit" {{$aluno->cursos->isEmpty() ? 'disabled' : ''}}>
                                 <i class="fa fa-save"></i>

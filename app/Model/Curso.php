@@ -13,8 +13,10 @@ class Curso extends Model
         return $this->belongsTo('App\Model\Instrumento', 'id_instrumento', 'id');
     }
 
-    public function agendas(){
-        return $this->belongsToMany('App\Model\Agenda', 'agenda_curso', 'id_curso', 'id_agenda');
+    public function inscricoes(){
+        return $this
+            ->belongsToMany('App\Model\Inscricao', 'inscricao', 'id_curso', 'id')
+            ->withPivot('dataInscricao', 'dataCancelamento',  'horaInicio', 'horaTermino', 'id_dia');
     }
 
     public function professores(){
@@ -24,6 +26,6 @@ class Curso extends Model
     public function alunos(){
         return $this
             ->belongsToMany('App\Model\Aluno', 'inscricao', 'id_curso', 'id_aluno')
-            ->withPivot('dataInscricao', 'dataCancelamento', 'id_mensalidade');
+            ->withPivot('dataInscricao', 'dataCancelamento',  'horaInicio', 'horaTermino', 'id_dia');
     }
 }
