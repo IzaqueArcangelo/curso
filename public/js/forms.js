@@ -20,6 +20,17 @@ $(document).ready(function(){
         }
     });
 
+    //https://xdsoft.net/jqplugins/datetimepicker/
+    jQuery('#horaInicio').datetimepicker({
+        datepicker:false,
+        format:'H:i'
+    });
+
+    jQuery('#horaTermino').datetimepicker({
+        datepicker:false,
+        format:'H:i'
+    });
+
     // Plugin de máscara
     $('.cpf').mask('000.000.000-00', {reverse: true});
     $('.cep').mask('00000-000');

@@ -773,3 +773,15 @@ footer a:hover {
     outline: 0;
 }
 
+.img-centered {
+    margin: 0 auto;
+}
+.tabela-centralizada thead > tr > th{
+    text-align: center;
+    align-content: center;
+}
+
+.tabela-centralizada tbody > tr td{
+    text-align: center;
+    align-content: center;
+}
